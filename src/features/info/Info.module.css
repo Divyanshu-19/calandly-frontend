@@ -1,0 +1,40 @@
+.username {
+  color: gray;
+  font-weight: 500;
+  font-size: medium;
+}
+
+.meetingName {
+  font-size: x-large;
+  font-weight: 700;
+}
+
+.backArrowButton {
+  margin: 1rem 0 1.5rem 0;
+  font-size: x-large;
+  color: blue;
+  border: 1px solid lightblue;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 50%;
+}
+
+.backArrowButton:hover {
+  background-color: lightblue;
+}
+
+.infoMargin {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 650px) {
+  .userInfo {
+    display: flex;
+  }
+
+  .userDetails {
+    text-align: center;
+    margin-top: 1.5rem;
+    margin-left: 3rem;
+  }
+}
