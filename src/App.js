@@ -1,8 +1,11 @@
-import "./App.css";
+import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Main from "./features/main/Main";
-import Confirmation from "./features/confirmation/Confirmation";
+
+const Confirmation = React.lazy(() =>
+  import("./features/confirmation/Confirmation")
+);
 
 function App() {
   return (
@@ -10,7 +13,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/:time" element={<Confirmation />} />
+          <Route
+            path="/:time"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <Confirmation />
+              </Suspense>
+            }
+          />
           <Route path="*" element={<Main />} />
         </Routes>
       </BrowserRouter>

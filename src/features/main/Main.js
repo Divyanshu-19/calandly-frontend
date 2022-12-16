@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import DateTime from "../datetime/DateTime";
 import Info from "../info/Info";
-import Timeslot from "../timeslot/Timeslot";
 import Styles from "./Main.module.css";
+
+const Timeslot = React.lazy(() => import("../timeslot/Timeslot"));
 
 const Main = () => {
   const [date, setDate] = useState(null);
@@ -38,7 +39,9 @@ const Main = () => {
       </div>
       {date ? (
         <div>
-          <Timeslot date={date} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Timeslot date={date} />
+          </Suspense>
         </div>
       ) : null}
     </div>

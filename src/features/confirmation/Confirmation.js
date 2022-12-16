@@ -1,7 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { useParams } from "react-router-dom";
 import Info from "../info/Info";
-import ConfirmationDetails from "./components/ConfirmationDetails";
+
+const ConfirmationDetails = React.lazy(() =>
+  import("./components/ConfirmationDetails")
+);
 
 const Confirmation = () => {
   const { time } = useParams();
@@ -29,7 +32,9 @@ const Confirmation = () => {
         <Info time={time} />
       </div>
       <div>
-        <ConfirmationDetails />
+        <Suspense fallback={<div>Loading...</div>}>
+          <ConfirmationDetails />
+        </Suspense>
       </div>
     </div>
   );
