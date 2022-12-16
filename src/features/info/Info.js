@@ -1,6 +1,12 @@
 import React from "react";
 import Styles from "./Info.module.css";
 import { useNavigate } from "react-router-dom";
+import {
+  ArrowLeft,
+  ClockFill,
+  CameraVideoFill,
+  CalendarDate,
+} from "react-bootstrap-icons";
 
 const Info = ({ time }) => {
   const monthName = [
@@ -59,7 +65,7 @@ const Info = ({ time }) => {
     <div>
       <div className={Styles.userInfo}>
         <div className={Styles.backArrowButton} onClick={() => navigate("/")}>
-          <i className="bi bi-arrow-left"></i>
+          <ArrowLeft className="pb-1" />
         </div>
         <div className={Styles.userDetails}>
           <div className={Styles.username}>Sudharshan Karthik V</div>
@@ -67,18 +73,18 @@ const Info = ({ time }) => {
         </div>
       </div>
       <div className={`${Styles.username} ${Styles.infoMargin}`}>
-        <i className="bi bi-clock-fill me-2"></i> 30 min
+        <ClockFill className="me-2" /> 30 min
       </div>
       <div className={`${Styles.username} ${Styles.infoMargin} d-flex`}>
         <div>
-          <i className="bi bi-camera-video-fill me-3"></i>
-        </div>{" "}
+          <CameraVideoFill className="me-3" />
+        </div>
         <div>Web conferencing details provided upon confirmation.</div>
       </div>
       {time ? (
         <div className={`${Styles.username} ${Styles.infoMargin} d-flex`}>
           <div>
-            <i className="bi bi-calendar"></i>
+            <CalendarDate />
           </div>{" "}
           <div className="ms-3">{getTimeString()}</div>
         </div>
