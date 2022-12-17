@@ -36,10 +36,21 @@ module.exports = {
     runtimeChunk: "single",
     splitChunks: {
       cacheGroups: {
+        utilityVendor: {
+          test: /[\\/]node_modules[\\/](axios)[\\/]/,
+          name: "utilityVendor",
+        },
+        bootstrapVendor: {
+          test: /[\\/]node_modules[\\/](bootstrap|react-bootstrap-icons|jquery|popper.js)[\\/]/,
+          name: "bootstrapVendor",
+        },
+        reactVendor: {
+          test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom|react-scripts)[\\/]/,
+          name: "reactVendor",
+        },
         vendor: {
-          test: /[\\/]node_modules[\\/]/,
+          test: /[\\/]node_modules[\\/](!axios)(!bootstrap)(!react-bootstrap-icons)(!jquery)(!popper.js)(!react)(!react-dom)(!react-router-dom)(!react-scripts)[\\/]/,
           name: "vendors",
-          chunks: "all",
         },
       },
     },
