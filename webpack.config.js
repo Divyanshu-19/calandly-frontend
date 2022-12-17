@@ -3,6 +3,8 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require("dotenv-webpack");
+// const BundleAnalyzerPlugin =
+//   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = {
   entry: path.resolve(__dirname, "src", "index.js"),
@@ -35,21 +37,24 @@ module.exports = {
   optimization: {
     runtimeChunk: "single",
     splitChunks: {
+      chunks: "all",
+      maxInitialRequests: Infinity,
+      minSize: 0,
       cacheGroups: {
         utilityVendor: {
           test: /[\\/]node_modules[\\/](axios)[\\/]/,
           name: "utilityVendor",
         },
         bootstrapVendor: {
-          test: /[\\/]node_modules[\\/](bootstrap|react-bootstrap-icons|jquery|popper.js)[\\/]/,
-          name: "bootstrapVendor",
+          test: /[\\/]node_modules[\\/](bootstrap)[\\/]/,
+          name: "bootstrapvendor",
         },
         reactVendor: {
-          test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom|react-scripts)[\\/]/,
-          name: "reactVendor",
+          test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+          name: "reactvendor",
         },
         vendor: {
-          test: /[\\/]node_modules[\\/](!axios)(!bootstrap)(!react-bootstrap-icons)(!jquery)(!popper.js)(!react)(!react-dom)(!react-router-dom)(!react-scripts)[\\/]/,
+          test: /[\\/]node_modules[\\/](!axios)(!react-dom)(!bootstrap)[\\/]/,
           name: "vendors",
         },
       },
@@ -66,10 +71,9 @@ module.exports = {
     new Dotenv({
       systemvars: true,
     }),
-    // new webpack.DefinePlugin({
-    //   "process.env.REACT_APP_URL": JSON.stringify("http://localhost:8000"),
+    // new BundleAnalyzerPlugin({
+    //   generateStatsFile: true,
     // }),
-    // new webpack.EnvironmentPlugin(["REACT_APP_URL"]),
   ],
 
   mode: "production",
